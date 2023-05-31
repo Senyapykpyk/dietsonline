@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+       
+      <div class="account-heading row text-center">
+        <div class="col-12">
+          <img class="rounded-circle mx-auto account-img align-self-center" height="100" src="{{ dietolog.image.url }}">
+          <p><span class="badge bg-info">Специалист</span></p>
+          <a class="btn btn-outline-primary"
+           href="{% url 'chat:chat' request.user.id dietolog.user.id %}"
+           role="button">Диалог</a>
+          <h2 class="">{{ dietolog.lastname }}  
+            {{ dietolog.firstname }} {{ dietolog.surname }}
+            </h2>
+            
+          
+        </div>
+      </div>
+      <div class=" account-description row">
+        <div class="col-12">
+          <p class="text-secondary"> Образование</p>
+          <p>{{ dietolog.education }} </p>
+          <p class="text-secondary"> Опыт работы</p>
+          <p>{{ dietolog.experience }} лет</p>
+          <p class="text-secondary"> Описание</p>
+          <p>{{ dietolog.description }} </p>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

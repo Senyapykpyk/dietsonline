@@ -1,0 +1,77 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="content-section">
+    <div class="account-heading row text-center">
+      <div class="col-12">
+        <img class="rounded-circle mx-auto account-img align-self-center"
+             height="100"
+             src="{{ user.profileuser.image.url }}">
+        <h2 class="">
+          {{ user.profileuser.lastname }}
+          {{ user.profileuser.firstname }} {{ user.profileuser.surname }}
+        </h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <a class="btn btn-outline-primary"
+           href="{% url 'users:edit_profile' %}"
+           role="button">Редактировать профиль</a>
+      </div>
+    <div class=" account-description row">
+      <div class="col-12 col-xl-3"></div>
+      <div class="col-12 col-xl-3">
+        <p class="text-secondary">Пол</p>
+        <p>
+          {% if user.profileuser.sex == 'M' %}
+            Мужской
+          {% else %}
+            Женский
+          {% endif %}
+        </p>
+        <p class="text-secondary">Дата рождения</p>
+        <p>{{ user.profileuser.bday }}</p>
+        <p class="text-secondary">Рост</p>
+        <p>{{ user.profileuser.height }}</p>
+        <p class="text-secondary">Вес</p>
+        <p>{{ user.profileuser.weight }}</p>
+      </div>
+      <div class="col-12 col-xl-6">
+        <div class="row m-1">
+          <div class="col-12 col-xl-5 m-1 card card-normz">
+            <p>Ваш идеальный вес</p>
+            <p class="fs-3">{{ idealWeight }} кг</p>
+          </div>
+          <div class="col-12 col-xl-5 m-1 card card-normz">
+            <p>Ваша норма воды</p>
+            <p class="fs-3">{{ waterNormal }} л</p>
+          </div>
+          
+        </div>
+        <div class="row m-1">
+          
+          <div class="col-12 col-xl-10 m-1 card card-imt">
+            <h4 class="py-2">Ваш индекс массы тела</h4>
+            <p class="fs-3">{{ imd }}</p>
+            <div>
+              <p><strong>Интерпретация показателей на основе рекомендации ВОЗ:</strong></p>
+            <ul>
+              <li>до 16 – выраженный дефицит массы;</li>
+              <li>16 – 17,9 – недостаточная масса тела;</li>
+              <li>18 – 24,9 – индекс норма;</li>
+              <li>25 – 29,9 – избыточная масса тела;</li>
+              <li>30 – 34,9 – ожирение 1 степени;</li>
+              <li>35 – 39,9 – ожирение 2 степени;</li>
+              <li>свыше 40 – ожирение 3 степени.</li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  </div>
+{% endblock content %}

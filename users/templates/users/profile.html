@@ -1,0 +1,42 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+       
+      <div class="account-heading row text-center">
+        <div class="col-12">
+          <img class="rounded-circle mx-auto account-img align-self-center" height="100" src="{{ user.profileconsultant.image.url }}">
+          <p><span class="badge bg-info">Специалист</span></p>
+          <h2 class="">{{ user.profileconsultant.lastname }}  
+            {{ user.profileconsultant.firstname }} {{user.profileconsultant.surname}}
+            </h2>
+            
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <div class=" account-description row">
+        <div class="col-12">
+          <p class="text-secondary"> Образование</p>
+          <p>{{ user.profileconsultant.education}} </p>
+          <p class="text-secondary"> Опыт работы</p>
+          <p>{{ user.profileconsultant.experience}} </p>
+          <p class="text-secondary"> Описание</p>
+          <p>{{ user.profileconsultant.description}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 text-start">
+        {% if user.profileconsultant.is_activate%}
+        <span class="text-success">Ваш профиль активирован</span>
+        <a class="btn btn btn-outline-secondary" href="{% url 'users:activate_profile' %}" role="button">Деативировать</a>
+        {%else%}
+        <span class="text-error">Ваш профиль не активирован (не выводится в списке диетологов) </span>
+        <a class="btn btn btn-outline-success" href="{% url 'users:activate_profile' %}" role="button">Активировать</a>
+        {% endif %}
+      </div>
+      <div class="col-6 text-end">
+        <a class="btn btn-outline-primary" href="{% url 'users:edit_profile' %}" role="button">Редактировать профиль</a>
+      </div>
+    </div>
+{% endblock content %}
