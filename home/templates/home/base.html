@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Обязательные мета-теги -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap, иконки и шрифт -->
+     <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}">
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>   
+     <link rel="stylesheet" type="text/css" href="{% static 'home/css/main.css' %}">
+     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     {% comment %} <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"  media="screen,projection"/> {% endcomment %}
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="{% static 'home/js/bootstrap.min.js'%}"></script>
+     <script src="{% static 'home/js/jquery.validate.min.js' %}"></script>
+      <script src="{% static 'home/js/calcs.js' %}"></script>
+      {% comment %} <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/chat.js' %}"></script> {% endcomment %}
+    
+    {% if title %}
+        <title> Онлайн диетолог -  {{ title }}</title>
+    {% else %}
+        <title>Онлайн диетолог</title>
+    {% endif %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home:index' %}">Онлайн-диетолог</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link {% if request.path == "/" %}active {% endif %}" aria-current="page" href="{% url 'home:index'%}">Главная</a>
+              <a class="nav-link {% if request.path == "/dietologs/" %}active {% endif %}" href="{% url 'home:dietologs' %}">Диетологи</a>
+              <a class="nav-link {% if request.path == "/calcs/" %}active {% endif %}" href="{% url 'home:calc_bzhu' %}">Калькулятор калорий</a>
+    
+            </div>
+            <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <a class="nav-link {% if request.path == "/user/profile/" %}active {% endif %}" href="{% url 'users:profile'%}">Профиль</a>
+                <a class="nav-link" href="{% url 'chat:chats'%}">Диалоги</a>
+                <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                <a class="nav-link" href="{% url 'users:register' %}">Регистрация</a>
+                {% endif %}
+              </div>
+          </div>
+        </div>
+    </nav>
+</header>
+<main class="container">
+    <div class="row">
+        <div class="col-12 py-4">
+            {% if messages %}
+        	{% for message in messages %}
+          	<div class="alert alert-{{ message.tags }}">
+            	{{ message }}
+          	</div>
+        	{% endfor %}
+            {% endif %}
+            {% block content %} {% endblock %}
+           
+        </div>
+    </div>
+</main>
+
+
+   
+</body>
+</html>

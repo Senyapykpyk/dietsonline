@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content">
+
+  {% for duser in diet_profile %}
+    <div class="row mb-3">
+        <div class="card">
+
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-2 text-center">
+                     <img class="rounded-circle" height="100" src="{{ duser.image.url}}">
+                </div>
+                <div class="col-10">
+              <h5 class="card-title"><a href={% url 'home:dietolog_profile' duser.user_id %}>{{ duser.lastname}} {{ duser.firstname}} {{ duser.surname}}</a></h5>
+              <p class="card-text">{{ duser.education}}</p>
+              <p class="card-text">Опыт работы: {{ duser.experience}} лет</p>
+              <p class="card-text">{{ duser.description}}</p>
+              {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+
+    
+</div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% comment %} {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %} {% endcomment %}
+
+    <div class="services-dashboard innder row">
+
+        <div class="block-item doctors-onduty col-12 col-xl-5">
+          <h2>Консультация врача-диетолога</h2>
+
+          <div class="description-text">Опытный  врач свяжется с вами
+                  , проведет консультацию, задаст вопросы и даст рекомендации</div>
+          <div class="button-wrap">
+              <a class="link" href="{% url 'home:dietologs' %}">К списку диетологов</a>
+          </div>
+      </div>
+
+      <div class="block-item col-12 col-xl-3 calc-help filter">
+        <h2>Калькулятор калорий</h2>
+
+        <div class="description-text">
+          <p>Рассчитайте важные показатели для эффективного похудения</p>
+        </div>
+
+      
+
+        <a href="{% url 'home:calc_bzhu' %}" class="link on-calc-help">
+            Рассчитать
+        </a>
+    </div>
+    <div class="block-item col-12 col-xl-3 profile-card filter">
+      <h2>Отслеживайте показатели</h2>
+
+      <div class="description-text">
+        <p>В личном профиле можно отслеживать показатели и общаться со специалистами</p>
+      </div>
+
+    
+
+      <a href="{% url 'users:profile' %}" class="link on-calc-help">
+          Перейти
+      </a>
+  </div>
+    </div>
+{% endblock content %}

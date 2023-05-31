@@ -1,0 +1,137 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% load static %}
+    <div class="content">
+
+        <h2>Расчет суточной нормы калорий и БЖУ </h2>
+        <form class="calc4 calc-tools"
+              id="calc4"
+              method="post"
+              action=""
+              novalidate="novalidate">
+            <div class="form-group">
+                <div class="cl3__label">Ваш пол:</div>
+                <label class="radio-inline">
+                    <input type="radio"
+                           name="gender"
+                           class="cl4_sex"
+                           value="m"
+                           checked="checked">
+                    <span style="font-size:17px;">Мужской</span>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" class="cl4_sex" value="f">
+                    <span style="font-size:17px;">Женский</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="cl3__label">Ваш возраст:</label>
+                <div class="right-input">
+                    <input type="text"
+                           name="cl4_voz"
+                           id="cl4_voz"
+                           class="cl3__input form-control valid">
+                    <div class="error-info in-1"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cl3__label">Ваш рост (см):</div>
+                <div class="right-input">
+                    <input type="text" name="cl4_rost" id="cl4_rost" class="cl3__input valid">
+                    <div class="error-info in-2"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cl3__label">Ваш вес, кг:</div>
+                <div class="right-input">
+                    <input type="text" name="cl4_ves" id="cl4_ves" class="cl3__input valid">
+                    <div class="error-info in-3"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cl3__label">Ваш образ жизни:</div>
+                <div class="right-input">
+                    <select name="life" id="cl4_ob" class="form-control valid">
+                        <option value="">Не знаю</option>
+                        <option value="1.2">Сидячий, малоподвижный</option>
+                        <option value="1.375">Легкая активность (упражнения 1-3 раза в неделю)</option>
+                        <option value="1.55">Средняя активность (тренировки 3-5 раз в неделю)</option>
+                        <option value="1.725">Высокая активность (высокие нагрузки каждый день)</option>
+                        <option value="1.9">Экстремально высокая активность</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cl3__label">Ваша цель:</div>
+                <div class="right-area">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="goal" id="goal" class="cl4_need valid" value="low">
+                            <span style="font-size:16px;">Сбросить вес</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio"
+                                   name="goal"
+                                   id="goal"
+                                   class="cl4_need valid"
+                                   value="high">
+                            <span style="font-size:16px;">Набрать мышечную массу</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="goal" id="goal" class="cl4_need valid" value="eq">
+                            <span style="font-size:16px;">Поддерживать вес</span>
+                        </label>
+                    </div>
+                    <label for="goal" class="error" style="display:none;"></label>
+                    <div class="error-info in-4"></div>
+                </div>
+            </div>
+            <div>
+                <input type="button" class="cl3_btn" id="cl4_submit" value="Считать">
+            </div>
+            <div id="cl4_result" style="display:none;">
+                <b>Суточная норма калорий:</b>
+                <br>
+                по среднему расходу на килограмм <span class="cl4_rsrk">2600&nbsp;-&nbsp;3000</span>;
+                <br>
+                по формуле Харриса-Бенедикта <span class="cl4_rxb">2923</span>;
+                <br>
+                по формуле Миффлина - Сан Жеора <span class="cl4_rmsj">2410</span>.
+                <br>
+                <b>Ориентиры для
+                    <div class="cl4_result_name" style="display: inline"></div>
+                :</b>
+                <br>
+                диапазон калорий <span class="cl4_rd">2290&nbsp;-&nbsp;2531</span>;
+                <br>
+                суточная норма белка <span class="cl4_rb">143&nbsp;-&nbsp;221</span> грамм;
+                <br>
+                суточная норма жиров <span class="cl4_rj">64&nbsp;-&nbsp;84</span> грамм;
+                <br>
+                суточная норма углеводов <span class="cl4_ru">258&nbsp;-&nbsp;348</span> грамм.
+                <br>
+            </div>
+            <input type="hidden" name="ak_bib" value="">
+            <input type="hidden" name="ak_bfs" value="1685281712813">
+            <input type="hidden" name="ak_bkpc" value="0">
+            <input type="hidden" name="ak_bkp" value="">
+            <input type="hidden" name="ak_bmc" value="757;3189,43;105,8415;">
+            <input type="hidden" name="ak_bmcc" value="3">
+            <input type="hidden" name="ak_bmk" value="">
+            <input type="hidden" name="ak_bck" value="">
+            <input type="hidden" name="ak_bmmc" value="6">
+            <input type="hidden" name="ak_btmc" value="0">
+            <input type="hidden" name="ak_bsc" value="11">
+            <input type="hidden" name="ak_bte" value="">
+            <input type="hidden" name="ak_btec" value="0">
+            <input type="hidden"
+                   name="ak_bmm"
+                   value="585,531;83,302;2602,2871;31,1314;2307,949;3671,263;">
+        </form>
+    </div>
+{% endblock content %}
